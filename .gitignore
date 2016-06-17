@@ -1,0 +1,7 @@
+### .gitignore ###
+env/
+*.pyc
+*.pyo
+*.cnf
+dobra/secret_key.txt
+*~
