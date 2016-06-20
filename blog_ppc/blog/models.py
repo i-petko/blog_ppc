@@ -3,12 +3,12 @@
 
 from __future__ import unicode_literals
 import datetime
+import markdown
 
 from django.db import models
 from django.utils import timezone
 from django.core.urlresolvers import reverse
 from django.utils.encoding import python_2_unicode_compatible
-
 
 
 @python_2_unicode_compatible
@@ -31,4 +31,8 @@ class BlogPost(models.Model):
 	author = models.ForeignKey(Author, on_delete=models.CASCADE)
 
 	def __str__(self):
-		return self.name
+		return "%s (%s)" % (self.title, self.author.name)
+
+def save(self):
+	self.body = markdown.markdown(self.text)
+	super(BlogPost, self).save() # Call the "real" save() method.
